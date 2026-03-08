@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#FFFFFF">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:elevation="8dp"
+        app:itemBackground="@android:color/transparent"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <FrameLayout
+        android:id="@+id/mainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNav"
+        android:background="#F2F4F7">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/pageExpense"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="88dp">
+                    <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginTop="12dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="20dp" app:cardElevation="2dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="16dp" android:paddingTop="12dp">
+                                <ImageButton android:id="@+id/btnSearch" android:layout_width="32dp" android:layout_height="32dp" android:layout_alignParentStart="true" android:layout_centerVertical="true" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_menu_search" app:tint="#2196F3" android:scaleType="fitCenter" android:padding="4dp"/>
+                                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:gravity="center_vertical" android:orientation="horizontal">
+                                    <ImageButton android:id="@+id/btnPrevMonth" android:layout_width="32dp" android:layout_height="32dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_media_previous" app:tint="#888888" android:scaleType="fitCenter" android:padding="4dp"/>
+                                    <TextView android:id="@+id/tvMonthTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginHorizontal="8dp" android:text="2026年3月" android:textColor="#333333" android:textSize="15sp" android:textStyle="bold" />
+                                    <ImageButton android:id="@+id/btnNextMonth" android:layout_width="32dp" android:layout_height="32dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_media_next" app:tint="#888888" android:scaleType="fitCenter" android:padding="4dp"/>
+                                </LinearLayout>
+                            </RelativeLayout>
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="12dp" android:paddingTop="4dp">
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="一" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="二" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="三" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="四" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="五" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="六" android:textColor="#888888" android:textSize="11sp" />
+                                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="日" android:textColor="#888888" android:textSize="11sp" />
+                            </LinearLayout>
+                            <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvCalendarGrid" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="12dp" android:paddingBottom="4dp" android:overScrollMode="never"/>
+                            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE" android:layout_marginHorizontal="20dp"/>
+                            <LinearLayout android:id="@+id/layoutBudget" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="24dp" android:paddingTop="8dp" android:background="?attr/selectableItemBackground" android:clickable="true" android:focusable="true">
+                                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="本月预算" android:textSize="11sp" android:textColor="#888888" />
+                                    <TextView android:id="@+id/tvBudgetText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="¥ 0.00 / 未设置" android:textSize="11sp" android:textColor="#333333" android:textStyle="bold" />
+                                </RelativeLayout>
+                                <ProgressBar android:id="@+id/pbBudget" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="4dp" android:layout_marginTop="4dp" android:max="100" android:progress="0" />
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="24dp" android:paddingVertical="8dp" android:gravity="center_vertical">
+                                <TextView android:id="@+id/tvSelectedDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="03月04日 净收支" android:textColor="#666666" android:textSize="12sp" android:textStyle="bold"/>
+                                <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+                                <TextView android:id="@+id/tvDailyExpense" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="¥ 0.00" android:textColor="#666666" android:textSize="20sp" android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView" android:layout_width="match_parent" android:layout_height="wrap_content" android:nestedScrollingEnabled="false" android:clipToPadding="false" android:paddingHorizontal="4dp" android:layout_marginTop="4dp"/>
+                    <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginTop="8dp" android:layout_marginBottom="16dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="20dp" app:cardElevation="2dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="近7天支出趋势" android:textSize="12sp" android:textStyle="bold" android:textColor="#E53935" />
+                            <FrameLayout android:id="@+id/chartContainerExpense" android:layout_width="match_parent" android:layout_height="100dp" android:layout_marginTop="8dp" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="本月支出趋势" android:textSize="12sp" android:textStyle="bold" android:textColor="#FF9800" android:layout_marginTop="16dp"/>
+                            <FrameLayout android:id="@+id/chartContainerIncome" android:layout_width="match_parent" android:layout_height="100dp" android:layout_marginTop="8dp" />
+                            <TextView android:id="@+id/btnStats" android:layout_width="match_parent" android:layout_height="44dp" android:layout_marginTop="16dp" android:background="#F5F7FA" android:gravity="center" android:text="查看本月详细分类占比" android:textColor="#2196F3" android:textSize="14sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabAddExpense" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_marginEnd="20dp" android:layout_marginBottom="24dp" android:backgroundTint="#2196F3" android:src="@android:drawable/ic_input_add" app:elevation="6dp" app:tint="#FFFFFF" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/pageSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp">
+                    <TextView
+                        android:id="@+id/tvScheduleTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="计算中..."
+                        android:textColor="#333333"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnShowImport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:text="导入"
+                        android:textColor="#4C83FF"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="4dp"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/scheduleHeaderRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:background="#FAFAFA">
+                    <TextView android:id="@+id/tvScheduleMonth" android:layout_width="35dp" android:layout_height="match_parent" android:gravity="center" android:text="周" android:textSize="12sp" android:textColor="#888888" />
+                    <LinearLayout android:id="@+id/headerDay1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="一" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="二" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="三" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="四" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay5" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="五" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay6" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="六" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                    <LinearLayout android:id="@+id/headerDay7" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingVertical="4dp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="日" android:textSize="11sp" android:textColor="#888888" /><TextView android:id="@+id/tvDate7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--" android:textSize="9sp" android:textColor="#888888" /></LinearLayout>
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/layoutTimeColumn"
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="#FAFAFA" />
+
+                        <FrameLayout
+                            android:id="@+id/courseGrid"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#7C4DFF"
+                android:src="@android:drawable/ic_input_add"
+                app:elevation="6dp"
+                app:tint="#FFFFFF" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/pageMedication"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:fillViewport="true">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:paddingBottom="40dp">
+                <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginTop="12dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="20dp" app:cardElevation="2dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="16dp" android:paddingTop="8dp">
+                            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:gravity="center_vertical" android:orientation="horizontal">
+                                <ImageButton android:id="@+id/btnMedPrevMonth" android:layout_width="32dp" android:layout_height="32dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_media_previous" app:tint="#888888" android:scaleType="fitCenter" android:padding="4dp"/>
+                                <TextView android:id="@+id/tvMedMonthTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginHorizontal="8dp" android:text="2026年3月 健康日历" android:textColor="#333333" android:textSize="15sp" android:textStyle="bold" />
+                                <ImageButton android:id="@+id/btnMedNextMonth" android:layout_width="32dp" android:layout_height="32dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@android:drawable/ic_media_next" app:tint="#888888" android:scaleType="fitCenter" android:padding="4dp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="12dp" android:paddingTop="4dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="一" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="二" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="三" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="四" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="五" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="六" android:textColor="#888888" android:textSize="11sp" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="日" android:textColor="#888888" android:textSize="11sp" />
+                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvMedCalendarGrid" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="12dp" android:paddingBottom="12dp" android:overScrollMode="never"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <TextView android:id="@+id/tvMedTitleDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2026年3月5日" android:textSize="14sp" android:textColor="#888888" android:layout_marginTop="24dp" android:layout_marginBottom="16dp"/>
+                <androidx.cardview.widget.CardView android:id="@+id/btnPunchMed" android:layout_width="220dp" android:layout_height="56dp" app:cardCornerRadius="28dp" app:cardElevation="6dp" app:cardBackgroundColor="#43A047" android:clickable="true" android:foreground="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="horizontal">
+                        <TextView android:id="@+id/tvPunchIcon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="完成" android:textSize="16sp" android:textStyle="bold" android:textColor="#FFFFFF" android:layout_marginEnd="8dp"/>
+                        <TextView android:id="@+id/tvPunchText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="今日已打卡" android:textSize="16sp" android:textStyle="bold" android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView android:id="@+id/cardSetReminder" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginTop="32dp" app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="12dp" app:cardElevation="2dp" android:clickable="true" android:foreground="?attr/selectableItemBackground">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="16dp" android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="设置每日吃药提醒" android:textColor="#333333" android:textSize="15sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvReminderTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="未设置" android:textColor="#2196F3" android:textSize="15sp" android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24dp" app:cardBackgroundColor="#E3F2FD" app:cardCornerRadius="8dp" app:cardElevation="0dp">
+                    <TextView android:id="@+id/tvPunchCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="16dp" android:paddingVertical="8dp" android:text="本月已累计打卡: 0 天" android:textSize="13sp" android:textColor="#1976D2" android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#E0E0E0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="教务系统导课"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="#F4F8FF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="导入学期"
+                    android:textColor="#4C83FF"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="12dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSemester"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:backgroundTint="#4C83FF" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="支持随时切换并抓取历史学期课表"
+                android:textColor="#88A3E0"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="4dp"
+            android:layout_height="16dp"
+            android:background="#4C83FF"
+            android:layout_marginEnd="8dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="教务信息"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="#F5F7FA"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+        <EditText
+            android:id="@+id/etStudentId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="学号/证件号 (如: 202310131033)"
+            android:inputType="number"
+            android:paddingHorizontal="16dp"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#F5F7FA"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="教务系统密码"
+            android:inputType="textPassword"
+            android:paddingHorizontal="16dp"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </androidx.cardview.widget.CardView>
+
+    <CheckBox
+        android:id="@+id/cbRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="记住登录信息，方便下次使用"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        android:buttonTint="#4C83FF"
+        android:checked="true"/>
+
+    <CheckBox
+        android:id="@+id/cbAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="同意并授权临时使用学号、密码导入课表"
+        android:textColor="#666666"
+        android:textSize="13sp"
+        android:buttonTint="#4C83FF"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnDoImport"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#4C83FF"
+        android:text="一键导入课表"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:text="温馨提示：\n1、课表数据来自本校教务系统，获取课程表需使用教务系统/门户的账号密码自动导入。\n2、如忘记学号或密码，可向教务办老师询问。"
+        android:textColor="#999999"
+        android:textSize="12sp" />
+</LinearLayout>
